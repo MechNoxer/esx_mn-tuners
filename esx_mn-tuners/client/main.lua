@@ -64,7 +64,7 @@ Citizen.CreateThread(function()
                     DrawMarker(36, x, y, z , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 2.0, 2.0, 255, 255, 255, 100, false, true, 2, nil, nil, true)
     
                     if distance < 2 then
-                        ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to open tuning menu')
+                        ESX.ShowHelpNotification(_U('PRESS'))
                         
                         if IsControlJustReleased(0, 38) then
                             local vehicle = ESX.Game.GetClosestVehicle(pedCoords)
@@ -119,7 +119,7 @@ function CheckCar(CurrentVeh)
     if CarIsGood then
        CheckOwnership(CurrentVeh, ID)
     else
-        ESX.ShowNotification("Car is not tuneble!", true)
+        ESX.ShowNotification(_U("not"), true)
     end
 end
 
@@ -135,7 +135,7 @@ function CheckOwnership(CurrentVeh, ID)
         if IsOwner then
             OpenMenu(ID, Owner, VehPlate)
         else
-            ESX.ShowNotification("You are not the owner of the car!", true)
+            ESX.ShowNotification(_U("not_owner"), true)
         end
     end, VehPlate)
 end
@@ -149,7 +149,7 @@ function OpenMenu(ID, Owner, VehPlate)
     for i=1, #VehID do
         table.insert(elements, { ["label"] = VehID[i].Name .. " - " .. VehID[i].Price ,["value"] = i })
     end
-    table.insert(elements, { ["label"] = "Close" ,["value"] = "close" })
+    table.insert(elements, { ["label"] = _U("close") ,["value"] = "close" })
 
 
     ESX.UI.Menu.Open("default", GetCurrentResourceName(), "tuner_menu", 
@@ -185,11 +185,11 @@ end
 function OpenTuneSelectMenu(TuneSelectName, TuneSelectValue, VehID, ID, Owner, VehPlate)
     local elements = {}
 
-    table.insert(elements, { ["label"] = "Tune" ,["value"] = "tune" })
-    table.insert(elements, { ["label"] = "Show Car" ,["value"] = "showcar" })
-    table.insert(elements, { ["label"] = "Remove Car" ,["value"] = "removecar" })
-    table.insert(elements, { ["label"] = "Back" ,["value"] = "back" })
-    table.insert(elements, { ["label"] = "Close" ,["value"] = "close" })
+    table.insert(elements, { ["label"] = _U("tune") ,["value"] = "tune" })
+    table.insert(elements, { ["label"] = _U("show_car") ,["value"] = "showcar" })
+    table.insert(elements, { ["label"] = _U("remove_car") ,["value"] = "removecar" })
+    table.insert(elements, { ["label"] = _U("back") ,["value"] = "back" })
+    table.insert(elements, { ["label"] = _U("close") ,["value"] = "close" })
 
     ESX.UI.Menu.Open("default", GetCurrentResourceName(), "tuner_menu", 
         {
